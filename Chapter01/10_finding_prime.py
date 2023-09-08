@@ -43,3 +43,5 @@ def test_finding_prime():
 
 if __name__=="__main__":
     test_finding_prime()
+    
+# 소수를 구하는 알고리즘 시간 단축을 위해 암기할 필요가 있을 것 같다.
