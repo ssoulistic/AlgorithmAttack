@@ -9,8 +9,6 @@ for _ in range(T):
             print(0)
     elif (x2-x1)**2+(y2-y1)**2==(r1+r2)**2 or (x2-x1)**2+(y2-y1)**2==(r1-r2)**2:
         print(1)
-    elif (x2-x1)**2+(y2-y1)**2>(r1+r2)**2:
-        print(0)
     elif (r1-r2)**2<(x2-x1)**2+(y2-y1)**2<(r1+r2)**2:
         print(2)
     else:
