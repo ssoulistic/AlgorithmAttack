@@ -1,6 +1,7 @@
+import sys
 sudoku=[]
 for _ in range(9):
-    sudoku.append(list(map(int,input().split())))
+    sudoku.append(list(map(int,sys.stdin.readline().split())))
 
 def check_zero():
     zeroa=[]
