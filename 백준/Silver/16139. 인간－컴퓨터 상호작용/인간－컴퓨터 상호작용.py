@@ -1,13 +1,18 @@
-S=input()
+import sys
+S=sys.stdin.readline().strip()
 parsum=[[0 for _ in range(len(S)+1)] for _ in range(26)]
-q=int(input())
+q=int(sys.stdin.readline().strip())
+
 for s in range(len(S)):
     idx=ord(S[s])-97
-    parsum[idx][s+1]=parsum[idx][s]+1
-    for j in range(s+1,len(S)):
-        parsum[idx][j+1]=parsum[idx][j]
+    for k in range(26):
+        if k==idx:
+            parsum[k][s+1]=parsum[k][s]+1
+        else:
+            parsum[k][s+1]=parsum[k][s]
+
 for _ in range(q):
-    alpha,l,r=input().split()
+    alpha,l,r=sys.stdin.readline().strip().split()
     idx_alpha=ord(alpha)-97
     l=int(l)
     r=int(r)
