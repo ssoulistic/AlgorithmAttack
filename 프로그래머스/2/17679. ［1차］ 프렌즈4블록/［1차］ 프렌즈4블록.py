@@ -44,6 +44,7 @@ def solution(m, n, board):
         return falled
     
     while find2() or fall():
+        
         for x1,y1 in find2():
             pang(x1,y1)
         fall()
