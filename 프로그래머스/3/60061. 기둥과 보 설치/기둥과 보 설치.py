@@ -47,7 +47,6 @@ def solution(n, build_frame):
                         if not exist([x,y],a):
                             temp=False
                             break
- 
             if temp:
                 return True
             else:
