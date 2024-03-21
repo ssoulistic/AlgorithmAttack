@@ -1,8 +1,9 @@
 from collections import deque
 def solution(places):
     answer=[]
+    
     def smallbfs(start,graph):
-        visited=[[0 for _ in range(len(graph[0]))] for _ in range(len(graph))]
+        
         visited[start[0]][start[1]]=1
         que=deque()
         que.append(start)
@@ -19,12 +20,16 @@ def solution(places):
                         else:
                             visited[nr][nc]=visited[ri][ci]+1
                     elif graph[nr][nc]=="O":
-                        que.append([nr,nc])
+                        if visited[ri][ci]<3:
+                            que.append([nr,nc])
                     visited[nr][nc]=visited[ri][ci]+1
-                        
+        for v in visited:
+            print(v)
+        print()
         return 1
             
     for p in places:
+        visited=[[0 for _ in range(len(p[0]))] for _ in range(len(p))]
         result=1
         for row in range(len(p)):
             for col in range(len(p[0])):
