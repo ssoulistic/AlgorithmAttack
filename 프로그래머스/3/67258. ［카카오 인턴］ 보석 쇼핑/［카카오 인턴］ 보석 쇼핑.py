@@ -23,8 +23,8 @@ def solution(gems):
         if len(dic)<total:
             e+=1
         elif len(dic)==total:
-            if e-s<result[-1]-result[0]:
-                check(s,e)
+            # if e-s<result[-1]-result[0]:
+            check(s,e)
             if dic[gems[s]]==s:
                 del dic[gems[s]]
             s+=1
