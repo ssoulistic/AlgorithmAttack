@@ -1,19 +1,28 @@
+import sys
+input=sys.stdin.readline
 from collections import deque
 N,K=map(int,input().split())
-limit=max(N,K)*2
-graph=[False for _ in range(limit+1)]
-que=deque()
-search=["-1","+1","*2"]
-def bfs(n):
-    graph[n]=1
-    que.append(n)
+maximum=max(N,K)
+visited=[0 for _ in range(2*maximum+1)]
+
+def bfs(coord):
+    visited[coord]=1
+    que=deque()
+    que.append(coord)
     while que:
         next=que.popleft()
-        for s in search:
-            l=eval(str(next)+s)
-            if 0<=l<=limit and not graph[l]:
-                graph[l]=graph[next]+1
-                que.append(l)
-
-bfs(N)
-print(graph[K]-1)
+        if next==K:
+            return visited[K]
+        for i in range(3):
+            if i==0:
+                nx=next-1
+            elif i==1:
+                nx=next+1
+            elif i==2:
+                nx=next*2
+            if 0<=nx<=2*maximum:
+                if visited[nx]>visited[next]+1 or visited[nx]==0:
+                    visited[nx]=visited[next]+1
+                    que.append(nx)
+    return 
+print(bfs(N)-1)
