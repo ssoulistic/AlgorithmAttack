@@ -25,7 +25,7 @@ def bfs(start):
 graph=[]
 for _ in range(5):
     graph.append(list(input().strip()))   
-answer=[]
+answer=0
 for combo in combinations([[i,j] for i in range(5) for j in range(5)],7):
     visited=[[True for _ in range(5)] for _ in range(5)]
     som=0
@@ -35,5 +35,5 @@ for combo in combinations([[i,j] for i in range(5) for j in range(5)],7):
         visited[ri][ci]=False
     
     if som>=4 and bfs(combo[0]):
-        answer.append(combo)
-print(len(answer))
+        answer+=1
+print(answer)
