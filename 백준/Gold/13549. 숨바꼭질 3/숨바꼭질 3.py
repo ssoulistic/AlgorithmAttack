@@ -1,25 +1,41 @@
 import sys
 input=sys.stdin.readline
+from collections import deque
 N,K=map(int,input().split())
-import heapq
-graph=[1e10 for _ in range(2*N+2*K)]
-def dikstra(count):
-    que=[]
-    heapq.heappush(que,[count,N])
+visited=[0]*(100001)
+def teleport(coord):
+    temp=[]
+    while 0<=coord<=50000:
+        if visited[2*coord]>visited[coord]:
+            visited[2*coord]=visited[coord]
+        elif visited[2*coord]==0:
+            visited[2*coord]=visited[coord]
+        else:
+            break
+        if K<coord:
+             break
+        coord*=2
+        temp.append(coord)
+    return temp
+
+def bfs(coord):
+    visited[coord]=1
+    que=deque()
+    que.append(coord)
     while que:
-        time,curr=heapq.heappop(que)
-        if curr==K:
-            return time
-        if 0<=curr<len(graph):
-            if graph[curr]<time:
-                continue
-            elif graph[curr]==1e10:
-                graph[curr]=time
-                if 0<=2*curr<len(graph):
-                    heapq.heappush(que,[time,2*curr])
-                if 0<=curr-1<len(graph):
-                    heapq.heappush(que,[time+1,curr-1])
-                if 0<=curr+1<len(graph):
-                    heapq.heappush(que,[time+1,curr+1])
-        
-print(dikstra(0))
+        next=que.popleft()
+        que.extend(teleport(next))
+        if next==K or visited[K]:
+            return visited[K]
+        for i in range(2):
+            if i==0:
+                nx=next+1
+            elif i==1:
+                nx=next-1
+            if 0<=nx<=1e5:
+                if not visited[nx]:
+                    visited[nx]=visited[next]+1
+                    que.append(nx)
+    return visited[K]
+print(bfs(N)-1)
+    
