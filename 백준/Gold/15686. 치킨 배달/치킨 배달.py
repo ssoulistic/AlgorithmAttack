@@ -1,7 +1,9 @@
+# 당연히 bfs라고 생각하고 풀었는데 시간초과가 나서 Pypy3로 제출해서 통과했었다.
+# 그런데 치킨거리는 그냥 좌표 차이로 구할 수 있어서 그걸 비교하면 됐었던것...이었다..
+# 익숙한 문제도 다시 찬찬히 생각해볼 필요가 있을듯 하다.
 import sys
 input=sys.stdin.readline
 from itertools import combinations
-from collections import deque
 N,M=map(int,input().split())
 city=[]
 chicken=[]
@@ -15,32 +17,15 @@ for r in range(N):
             home.append([r,c])
     city.append(line)
 
-def bfs(start):
-    ri,ci=start
-    visited[ri][ci]=1
-    que=deque()
-    que.append([ri,ci])
-    search=[[-1,0],[1,0],[0,-1],[0,1]]
-    while que:
-        rii,cii=que.popleft()
-        for dr,dc in search:
-            nr=rii+dr
-            nc=cii+dc
-            if 0<=nr<N and 0<=nc<N:
-                if visited[nr][nc]>visited[rii][cii]+1:
-                    visited[nr][nc]=visited[rii][cii]+1
-                    que.append([nr,nc])
-                elif visited[nr][nc]==0:
-                    visited[nr][nc]=visited[rii][cii]+1
-                    que.append([nr,nc])
 answer=N**N
 for combo in combinations(chicken,M):
-    visited=[[0 for _ in range(N)] for _ in range(N)]
-    for case in combo:
-        bfs(case)
     chicken_distance=0
     for hr,hc in home:
-        chicken_distance+=(visited[hr][hc]-1)
+        home_min=N**N
+        for rr,cc in combo:
+            if home_min>abs(rr-hr)+abs(cc-hc):
+                home_min=abs(rr-hr)+abs(cc-hc)
+        chicken_distance+=home_min
     if answer>chicken_distance:
         answer=chicken_distance
 print(answer)
