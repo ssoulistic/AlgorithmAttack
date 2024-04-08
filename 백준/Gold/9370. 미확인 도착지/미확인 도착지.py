@@ -6,7 +6,7 @@ input=sys.stdin.readline
 T=int(input())
 from heapq import *
 
-def dijkstara(start,end,town_map):
+def dijkstra(start,town_map):
     distance=[1e9 for _ in range(len(town_map))]
     distance[start]=0
     queue=[]
@@ -20,7 +20,7 @@ def dijkstara(start,end,town_map):
             if distance[next_town]>distance[now]+next_distance:
                 distance[next_town]=distance[now]+next_distance
                 heappush(queue,[distance[next_town],next_town,history+[next_town]])
-    return distance[end]
+    return distance
 
 
 for _ in range(T):
@@ -39,7 +39,11 @@ for _ in range(T):
     for _ in range(t):
         x=int(input())
         suspicious.append(x)
+    distance_from_s=dijkstra(s-1,graph)
+    distance_from_g=dijkstra(g-1,graph)
+    distance_from_h=dijkstra(h-1,graph)
+
     for sus in suspicious:
-        if dijkstara(s-1,g-1,graph)+gtoh+dijkstara(h-1,sus-1,graph)==dijkstara(s-1,sus-1,graph) or dijkstara(s-1,h-1,graph)+gtoh+dijkstara(g-1,sus-1,graph)==dijkstara(s-1,sus-1,graph):
+        if distance_from_s[g-1]+gtoh+distance_from_h[sus-1]==distance_from_s[sus-1] or distance_from_s[h-1]+gtoh+distance_from_g[sus-1]==distance_from_s[sus-1]:
             answer.append(sus)
     print(*sorted(answer))
