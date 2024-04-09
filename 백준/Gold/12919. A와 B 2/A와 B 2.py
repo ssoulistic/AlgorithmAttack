@@ -1,23 +1,18 @@
 import sys
 input=sys.stdin.readline
-from collections import deque
-S=input().strip()
-T=input().strip()
+S = input().strip()
+T = input().strip()
 
-# 1. 문자열 뒤에 A를 추가
-# 2. 문자열 뒤에 B를 추가하고 문자열 뒤집기
-answer=0
-queue=deque()
-if S in T or S[::-1] in T:
-    queue.append(S)
-while queue:
-    word=queue.popleft()
+def check(word):
     if word==T:
-        answer=1
-    case1=word+"A"
-    case2=(word+"B")[::-1]
-    if case1 in T or case1[::-1] in T:
-        queue.append(case1)
-    if case2 in T or case2[::-1] in T:
-        queue.append(case2)
-print(answer)
+        return 1
+    elif len(word)==len(T) and word!=T:
+        return 0
+    
+    if ((word+"A") in T or (word+"A")[::-1] in T) and check(word+"A"):
+        return 1
+    if ((word+"B")in T or (word+"B")[::-1] in T) and check((word+"B")[::-1]):
+        return 1
+    return 0 
+print(check(S))
+    
