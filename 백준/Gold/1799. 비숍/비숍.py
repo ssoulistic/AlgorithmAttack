@@ -7,7 +7,6 @@ for p in range(N):
 
 left_cross=[False for _ in range(2*N-1)]
 
-answer=0
 def bishop(right_coord,count):
     global answer
     if answer<count:
@@ -22,11 +21,15 @@ def bishop(right_coord,count):
             if chess[nr][nc]==1 and not left_cross[N-1+nc-nr]:
                 Flag=False
                 left_cross[N-1+nc-nr]=True
-                bishop(right_coord+1,count+1)
+                bishop(right_coord+2,count+1)
                 left_cross[N-1+nc-nr]=False
         j+=1
     if Flag:
-        bishop(right_coord+1,count)
-        
-bishop(0,0)
-print(answer)
+        bishop(right_coord+2,count)
+# 체스판의 검은부분과 하얀부분으로 나누어 생각한 풀이
+result=0
+for i in range(2):
+    answer=0
+    bishop(i,0)  
+    result+=answer
+print(result)
