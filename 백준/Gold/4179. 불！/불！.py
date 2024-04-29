@@ -46,9 +46,6 @@ def escape(start):
                 if graph[nr][nc]=="." or graph[nr][nc]>visited[ri][ci]+1:
                     visited[nr][nc]=visited[ri][ci]+1
                     queue.append([nr,nc])
-                    if (nr==0 or nr==R-1 or nc==0 or nc==C-1):
-                        if answer>visited[ri][ci]+1:
-                            answer=visited[ri][ci]+1
 
     for r in range(R):
         if answer>visited[r][0]:
