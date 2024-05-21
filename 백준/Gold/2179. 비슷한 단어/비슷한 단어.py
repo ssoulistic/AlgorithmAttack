@@ -1,3 +1,5 @@
+# python 3.6이상 부터는 dictionary.items() 사용시 저장된 순서가 보장됨.
+    
 import sys
 input=sys.stdin.readline
 N=int(input())
@@ -12,7 +14,7 @@ for idx in range(N):
             prefix[char].append(idx)
         else:
             prefix[char]=[idx]
-longest=[0,[1e9,1e9]]
+longest=[0,[]]
 for k,v in prefix.items():
     if len(k)>longest[0]:
         if len(v)>1:
