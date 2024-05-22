@@ -5,21 +5,22 @@ dp1=[[0,0,0] for _ in range(N)]
 dp2=[[0,0,0] for _ in range(N)]
 dp3=[[0,0,0] for _ in range(N)]
 R,G,B=map(int,input().split())
-dp1[0]=[R,1e9,1e9]
-dp2[0]=[1e9,G,1e9]
-dp3[0]=[1e9,1e9,B]
+dp1[0]=[R,float("inf"),float("inf")]
+dp2[0]=[float("inf"),G,float("inf")]
+dp3[0]=[float("inf"),float("inf"),B]
+
+def update(dp,r,g,b,j):
+    dp[j][0]=min(dp[j-1][1],dp[j-1][2])+r
+    dp[j][1]=min(dp[j-1][0],dp[j-1][2])+g
+    dp[j][2]=min(dp[j-1][0],dp[j-1][1])+b
+
 for i in range(1,N):
     R,G,B=map(int,input().split())
-    dp1[i][0]=min(dp1[i-1][1],dp1[i-1][2])+R
-    dp1[i][1]=min(dp1[i-1][0],dp1[i-1][2])+G
-    dp1[i][2]=min(dp1[i-1][0],dp1[i-1][1])+B
+    update(dp1,R,G,B,i)
+    update(dp2,R,G,B,i)
+    update(dp3,R,G,B,i)
 
-    dp2[i][0]=min(dp2[i-1][1],dp2[i-1][2])+R
-    dp2[i][1]=min(dp2[i-1][0],dp2[i-1][2])+G
-    dp2[i][2]=min(dp2[i-1][0],dp2[i-1][1])+B
-
-    dp3[i][0]=min(dp3[i-1][1],dp3[i-1][2])+R
-    dp3[i][1]=min(dp3[i-1][0],dp3[i-1][2])+G
-    dp3[i][2]=min(dp3[i-1][0],dp3[i-1][1])+B
-print(min(dp1[N-1][1],dp1[N-1][2],dp2[N-1][0],dp2[N-1][2],dp3[N-1][0],dp3[N-1][1]))
-# 1 2 3 번 하나씩
+dp1[N-1][0]=float("inf")
+dp2[N-1][1]=float("inf")
+dp3[N-1][2]=float("inf")
+print(min(*dp1[N-1],*dp2[N-1],*dp3[N-1]))
