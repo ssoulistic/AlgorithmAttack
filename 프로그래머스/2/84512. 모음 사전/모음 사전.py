@@ -8,7 +8,6 @@ def solution(word):
             backt(word_stack+[alpha])
     backt([])
     dic={}
-    # words.sort()
     for i in range(len(words)):
         dic[words[i]]=i
     return dic[word]
