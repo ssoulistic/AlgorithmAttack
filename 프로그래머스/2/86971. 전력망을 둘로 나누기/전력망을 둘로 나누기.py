@@ -1,28 +1,27 @@
 from collections import deque
 def solution(n, wires):
-    # 한개씩 빼보면서.. bfs일까.
     
-    def bfs(k):
+    def bfs_and_difference(k):
         graph=[[] for _ in range(n)]
         visited=[False for _ in range(n)]
         for i in range(len(wires)):
-            if i!=k: # k번째만 스킵
-                graph[wires[i][0]-1].append(wires[i][1]-1)
-                graph[wires[i][1]-1].append(wires[i][0]-1)
-        que=deque()
+            if i!=k:
+                s,e=wires[i]
+                graph[s-1].append(e-1)
+                graph[e-1].append(s-1)
+        queue=deque()
+        queue.append(0)
         visited[0]=True
-        que.append(0)
-        while que:
-            next=que.popleft()
-            for g in graph[next]:
-                if not visited[g]:
-                    visited[g]=True
-                    que.append(g)
-        result=visited.count(True)-visited.count(False)
-        return abs(result)
-    answer = n
-    for i in range(n):
-        diff=bfs(i)
-        if answer>diff:
-            answer=diff
+        while queue:
+            num=queue.popleft()
+            for next_num in graph[num]:
+                if not visited[next_num]:
+                    visited[next_num]=True
+                    queue.append(next_num)
+        side1=visited.count(True)
+        side2=n-side1
+        return abs(side1-side2)
+    answer = 1e5
+    for j in range(len(wires)):
+        answer=min(answer,bfs_and_difference(j))
     return answer
