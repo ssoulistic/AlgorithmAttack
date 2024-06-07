@@ -1,9 +1,16 @@
 def solution(triangle):
-    mem=[0 for _ in range(len(triangle)+2)]
-    for seq in range(len(triangle)):
-        temp=[]
-        for i in range(len(triangle[seq])):
-            temp.append(max(mem[i],mem[i+1])+triangle[seq][i])
-        for j in range(len(temp)):
-            mem[j+1]=temp[j]
-    return max(mem)
+    dp=[[0 for _ in range(i)] for i in range(1,len(triangle)+1)]
+    dp[0][0]=triangle[0][0]
+    for j in range(1,len(triangle)):
+        for k in range(j+1):          
+            if k==0:
+                left=0
+                right=dp[j-1][k]
+            elif k==j:
+                left=dp[j-1][k-1]
+                right=0
+            else:
+                left=dp[j-1][k-1]
+                right=dp[j-1][k]
+            dp[j][k]=max(left,right)+triangle[j][k]
+    return max(dp[-1])
