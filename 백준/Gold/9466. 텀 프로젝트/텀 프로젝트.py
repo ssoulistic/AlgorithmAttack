@@ -1,15 +1,15 @@
-from collections import deque
 import sys
 input=sys.stdin.readline 
 
 T=int(input())
 def dfs(cur):
-    current_list=deque()
+    global answer
+    current_list=list()
     while True:
         if visited[cur]:
             if cur in current_list:
-                return len(current_list)-current_list.index(cur)
-            return 0
+                answer-=(len(current_list)-current_list.index(cur))
+            return 
         current_list.append(cur)
         visited[cur]=True
         cur=sel[cur]
@@ -18,8 +18,8 @@ for _ in range(T):
     n=int(input())
     answer=n
     sel=[0]
-    sel.extend(list(map(int,input().split())))
-    visited=[False for _ in range(n+1)]
+    sel+=list(map(int,input().split()))
+    visited=[False]*(n+1)
     for k in range(1,n+1):
-        answer-=dfs(k)
+        dfs(k)
     print(answer)
