@@ -1,21 +1,22 @@
 import sys
 input=sys.stdin.readline
-sys.setrecursionlimit(10**9)
 T=int(input())
 
 def dfs(cur):
-    if visited[cur]:
-        Flag=False
-        for l in range(len(current_list)):
-            if Flag:
-                teamed[current_list[l]]=True
-            elif current_list[l]==cur:
-                Flag=True
-                teamed[current_list[l]]=True
-        return 
-    current_list.append(cur)
-    visited[cur]=True
-    dfs(sel[cur])
+    while True:
+        if visited[cur]:
+            Flag=False
+            for l in range(len(current_list)):
+                if Flag:
+                    teamed[current_list[l]]=True
+                elif current_list[l]==cur:
+                    Flag=True
+                    teamed[current_list[l]]=True
+            return
+        current_list.append(cur)
+        visited[cur]=True
+        cur=sel[cur]
+
 
 for _ in range(T):
     n=int(input())
