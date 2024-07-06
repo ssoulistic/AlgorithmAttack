@@ -1,18 +1,15 @@
 import sys
-input=sys.stdin.readline
+input=sys.stdin.readline 
+
 T=int(input())
 
 def dfs(cur):
     while True:
         if visited[cur]:
-            Flag=False
             for l in range(len(current_list)):
-                if Flag:
-                    teamed[current_list[l]]=True
-                elif current_list[l]==cur:
-                    Flag=True
-                    teamed[current_list[l]]=True
-            return
+                if current_list[l]==cur:
+                    return len(current_list)-l
+            return 0
         current_list.append(cur)
         visited[cur]=True
         cur=sel[cur]
@@ -20,6 +17,7 @@ def dfs(cur):
 
 for _ in range(T):
     n=int(input())
+    answer=n
     students=list(map(int,input().split()))
     sel=[0 for _ in range(n+1)]
     for j in range(n):
@@ -28,5 +26,5 @@ for _ in range(T):
     teamed=[False for _ in range(n+1)]
     for k in range(1,n+1):
         current_list=list()
-        dfs(k)
-    print(n-teamed.count(True))
+        answer-=dfs(k)
+    print(answer)
