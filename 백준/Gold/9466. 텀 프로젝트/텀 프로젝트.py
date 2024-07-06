@@ -1,9 +1,10 @@
+from collections import deque
 import sys
 input=sys.stdin.readline 
 
 T=int(input())
 def dfs(cur):
-    current_list=list()
+    current_list=deque()
     while True:
         if visited[cur]:
             if cur in current_list:
@@ -16,10 +17,8 @@ def dfs(cur):
 for _ in range(T):
     n=int(input())
     answer=n
-    students=list(map(int,input().split()))
-    sel=[0 for _ in range(n+1)]
-    for j in range(n):
-        sel[j+1]=students[j]
+    sel=[0]
+    sel.extend(list(map(int,input().split())))
     visited=[False for _ in range(n+1)]
     for k in range(1,n+1):
         answer-=dfs(k)
