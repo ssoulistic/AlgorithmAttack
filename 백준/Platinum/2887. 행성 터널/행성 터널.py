@@ -1,3 +1,4 @@
+# 좌표평면에서 최단거리란 무엇인가를 생각해보기.
 from heapq import *
 import sys
 input=sys.stdin.readline
