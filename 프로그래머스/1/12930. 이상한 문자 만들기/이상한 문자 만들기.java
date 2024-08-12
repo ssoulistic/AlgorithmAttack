@@ -1,24 +1,24 @@
 import java.util.Arrays;
 class Solution {
     public String solution(String s) {
-        String answer="";
+        StringBuilder answer= new StringBuilder();
         int even = 0;
         String[] c=s.split("");
         for (int i=0;i<c.length;i++){
             if (c[i].equals(" ")){
-                answer+=" ";
+                answer.append(" ");
                 even=0;
             }
             else{
                 if (even % 2==0){
-                    answer+=c[i].toUpperCase();
+                    answer.append(c[i].toUpperCase());
                 }
                 else{
-                    answer+=c[i].toLowerCase();
+                    answer.append(c[i].toLowerCase());
                 }
-                even+=1;
+                even++;
             }
         }
-        return answer;
+        return answer.toString();
     }
 }
