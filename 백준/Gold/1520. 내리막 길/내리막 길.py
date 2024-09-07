@@ -1,6 +1,6 @@
 import sys
 input=sys.stdin.readline
-
+sys.setrecursionlimit(10**6)
 M,N=map(int,input().split())
 graph=[]
 dp=[[0 for _ in range(N)] for _ in range(M)]
