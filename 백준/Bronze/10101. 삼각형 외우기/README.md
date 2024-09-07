@@ -4,32 +4,36 @@
 
 ### 성능 요약
 
-메모리: 31256 KB, 시간: 48 ms
+메모리: 31120 KB, 시간: 32 ms
 
 ### 분류
 
 기하학, 구현
 
+### 제출 일자
+
+2024년 9월 7일 23:08:22
+
 ### 문제 설명
 
-<p>You have trouble remembering which type of triangle is which. You write a program to help.</p>
+<p>창영이는 삼각형의 종류를 잘 구분하지 못한다. 따라서 프로그램을 이용해 이를 외우려고 한다.</p>
 
-<p>Your program reads in three angles (in degrees).</p>
+<p>삼각형의 세 각을 입력받은 다음, </p>
 
 <ul>
-	<li>If all three angles are 60, output Equilateral.</li>
-	<li>If the three angles add up to 180 and exactly two of the angles are the same, output Isosceles.</li>
-	<li>If the three angles add up to 180 and no two angles are the same, output Scalene.</li>
-	<li>If the three angles do not add up to 180, output Error.</li>
+	<li>세 각의 크기가 모두 60이면, Equilateral</li>
+	<li>세 각의 합이 180이고, 두 각이 같은 경우에는 Isosceles</li>
+	<li>세 각의 합이 180이고, 같은 각이 없는 경우에는 Scalene</li>
+	<li>세 각의 합이 180이 아닌 경우에는 Error</li>
 </ul>
+
+<p>를 출력하는 프로그램을 작성하시오.</p>
 
 ### 입력 
 
- <p>The input consists of three integers, each on a separate line.</p>
-
-<p>Each integer will be greater than 0 and less than 180.</p>
+ <p>총 3개의 줄에 걸쳐 삼각형의 각의 크기가 주어진다. 모든 정수는 0보다 크고, 180보다 작다.</p>
 
 ### 출력 
 
- <p>Exactly one of Equilateral, Isosceles, Scalene or Error will be printed on one line.</p>
+ <p>문제의 설명에 따라 Equilateral, Isosceles, Scalene, Error 중 하나를 출력한다.</p>
 
