@@ -1,5 +1,6 @@
 import sys
 input=sys.stdin.readline
+sys.setrecursionlimit(10**6)
 def find(x):
     if group[x]!=x:
         group[x]=find(group[x])
