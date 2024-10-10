@@ -5,6 +5,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int N = Integer.parseInt(br.readLine());
         String sb = br.readLine();
         int Q = Integer.parseInt(br.readLine());
@@ -26,8 +27,9 @@ public class Main {
                     countMax = count;
                 }
             }
-            System.out.println(String.valueOf(countMax));
-
+            bw.write(String.valueOf(countMax));
+            bw.newLine();
         }
+    bw.flush();
     }
 }
