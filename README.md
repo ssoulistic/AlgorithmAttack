@@ -1,6 +1,6 @@
 # Algorithm
-
-
+	📍Focus point : 알고리즘이 동작할 때 쓰이는 자원, 알고리즘을 활용해야하는 경우, 시간복잡도
+	
 ## Basic
 ### brute force , exhaustive search
 	재귀를 활용하거나 반복문 등 다양한 방법을 활용해서 필요한 경우의 수를 따져보는 방법
