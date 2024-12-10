@@ -11,5 +11,5 @@ for idx in range(1,N+1):
         if time-work[idx-1][0]>=0:
             dp[time][idx]=max(dp[time-work[idx-1][0]][idx-1]+work[idx-1][1],dp[time][idx-1])
         else:
-            dp[time][idx]=max(dp[time-1][idx],dp[time][idx-1])
+            dp[time][idx]=dp[time][idx-1]
 print(dp[-1][-1])
