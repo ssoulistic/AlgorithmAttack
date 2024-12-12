@@ -8,7 +8,6 @@ for _ in range(T):
     dp=[0]*(M+1)
     dp[0]=1
     for c in coins:
-        for j in range(M+1):
-            if j>=c:
-                dp[j]+=dp[j-c]
+        for j in range(c,M+1):
+            dp[j]+=dp[j-c]
     print(dp[-1])
